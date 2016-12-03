@@ -1,3 +1,5 @@
+#include "Arduino.h"
+
 #define DISP_REGISTER 0x00
 #define KEYS_REGISTER 0x40
 #define MAX_BRIGHTNESS 12
@@ -26,11 +28,10 @@ class HT16K33 {
     void increaseBrightness();
     void decreaseBrightness();
     
-    void storeToBuffer(uint8_t* matrix);   
-    void writeToDisplay(uint8_t* matrix);
+    void storeToBuffer(uint8_t* matrix);
     void refreshDisplay();
     void clearDisplay();
-    void readButtons();
+    void readButtons();  // only reads the first byte of the key scan register becasue only the first 7 keys are used on this device
     bool getButtonFirstPress(uint8_t i);
     uint16_t getButtonHoldTime(uint8_t i);
     bool allowToMove(uint8_t i, uint16_t time, uint8_t rate);
